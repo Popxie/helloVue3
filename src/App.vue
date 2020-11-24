@@ -1,26 +1,19 @@
+<!--
+ * @Description: 
+ * @Author: xiehuaqiang
+ * @FilePath: /hellovue3/src/App.vue
+ * @Date: 2020-11-24 17:01:34
+-->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <NewMethods msg="Welcome to Your Vue.js App"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import NewMethods from './components/NewMethods.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NewMethods
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
