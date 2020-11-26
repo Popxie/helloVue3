@@ -15,7 +15,7 @@
     "core-js": "^3.6.5",
     "element-plus": "^1.0.1-alpha.21",
     "vue": "^3.0.0",
-    "vue-router": "^3.4.9",
+    "vue-router": "^4.0.0-rc.5",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
@@ -45,9 +45,7 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "vue/no-multiple-template-root": [
-        0
-      ],
+      "vue/no-multiple-template-root": [0],
       "no-undef": [0],
       "no-unused-vars": [
         0,

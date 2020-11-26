@@ -13,7 +13,7 @@
   <button @click="add2">增加</button>
 
 	<p>infoObj:{{ infoObj }}</p>
-  <button @click="add3">增加</button>
+  <el-button type='primary' @click="add3">增加</el-button>
 </template>
 
 <script>
