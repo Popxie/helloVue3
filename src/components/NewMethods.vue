@@ -7,13 +7,15 @@
 -->
 <template>
   <p>{{ state1 }}</p>
-  <button @click="add1">增加</button>
+  <el-button @click="add1">增加1</el-button>
 
 	<p>{{ state2 }}</p>
-  <button @click="add2">增加</button>
+  <el-button @click="add2">增加2</el-button>
 
 	<p>infoObj:{{ infoObj }}</p>
-  <el-button type='primary' @click="add3">增加</el-button>
+  <el-button type='primary' @click="add3">增加3</el-button>
+
+  <el-button type='primary' @click="getDataListClick">获取数据</el-button>
 </template>
 
 <script>
@@ -56,6 +58,7 @@ export default {
       console.log('响应式数据对象：', state2);
     }
     const add3 = () => {
+      console.log(333)
       infoObj.count = 6666
       infoObj.age = 444
       console.log('原始值：', infoObj);
@@ -67,6 +70,17 @@ export default {
       add2,
       add3,
       infoObj
+    }
+  },
+  methods: {
+    async getDataListClick() {
+      const url = '/kaka/demo/list'
+      const params = {
+        pageSize: 20,
+        page: 1
+      }
+      const res = await axios.get(url, { params })
+      console.log('res: ', res)
     }
   }
 }

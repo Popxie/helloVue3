@@ -35,6 +35,9 @@ globalConfig.VUE_APP_VERSION = version
 process.env.VUE_APP_VERSION = version
 
 module.exports = {
+  devServer: {
+    proxy: 'http://localhost:8899', // will proxy all request 与mock.js里的端口号保持一致
+  },
   publicPath,
   configureWebpack: {
     plugins: [
@@ -49,6 +52,9 @@ module.exports = {
         template: 'public/index.html',
         BASE_URL: publicPath,
         VUE_APP_TITLE: process.env.VUE_APP_TITLE
+      }),
+      new webpack.ProvidePlugin({
+        axios: 'axios'
       })
     ]
   }

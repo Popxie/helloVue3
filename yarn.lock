@@ -2386,6 +2386,19 @@ caseless@~0.12.0:
   resolved "https://registry.npm.taobao.org/caseless/download/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+cf-mock-server@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.npm.taobao.org/cf-mock-server/download/cf-mock-server-1.0.20.tgz#56a9aec8070b8315b3dcb02ef9a0072c29f24155"
+  integrity sha1-VqmuyAcLgxWz3LAu+aAHLCnyQVU=
+  dependencies:
+    chalk "^2.4.1"
+    commander "^2.12.2"
+    crlf-normalize "^1.0.1"
+    debug "^3.1.0"
+    express "^4.16.3"
+    glob "^7.1.2"
+    node-watch "^0.5.8"
+
 chalk@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npm.taobao.org/chalk/download/chalk-1.1.3.tgz?cache=0&sync_timestamp=1592843133653&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchalk%2Fdownload%2Fchalk-1.1.3.tgz#a8115c55e4a702fe4d150abd3872822a7e09fc98"
@@ -2655,7 +2668,7 @@ commander@2.17.x:
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.17.1.tgz?cache=0&sync_timestamp=1605992729751&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha1-vXerfebelCBc6sxy8XFtKfIKd78=
 
-commander@^2.18.0, commander@^2.20.0:
+commander@^2.12.2, commander@^2.18.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1605992729751&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
@@ -2861,6 +2874,11 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+crlf-normalize@^1.0.1:
+  version "1.0.5"
+  resolved "https://registry.npm.taobao.org/crlf-normalize/download/crlf-normalize-1.0.5.tgz#d5dddd46e152611ff4e7b38b73402f41c4db8a8a"
+  integrity sha1-1d3dRuFSYR/057OLc0AvQcTbioo=
 
 cross-spawn@^5.0.1:
   version "5.1.0"
@@ -3100,7 +3118,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
-debug@^3.1.1, debug@^3.2.5:
+debug@^3.1.0, debug@^3.1.1, debug@^3.2.5:
   version "3.2.7"
   resolved "https://registry.npm.taobao.org/debug/download/debug-3.2.7.tgz?cache=0&sync_timestamp=1605791507452&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdebug%2Fdownload%2Fdebug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
   integrity sha1-clgLfpFF+zm2Z2+cXl+xALk0F5o=
@@ -5811,6 +5829,11 @@ node-releases@^1.1.66:
   resolved "https://registry.npm.taobao.org/node-releases/download/node-releases-1.1.67.tgz?cache=0&sync_timestamp=1605581283263&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-releases%2Fdownload%2Fnode-releases-1.1.67.tgz#28ebfcccd0baa6aad8e8d4d8fe4cbc49ae239c12"
   integrity sha1-KOv8zNC6pqrY6NTY/ky8Sa4jnBI=
 
+node-watch@^0.5.8:
+  version "0.5.9"
+  resolved "https://registry.npm.taobao.org/node-watch/download/node-watch-0.5.9.tgz#da108bf9b5b28652ed1845523a30485c029a0b1c"
+  integrity sha1-2hCL+bWyhlLtGEVSOjBIXAKaCxw=
+
 normalize-package-data@^2.5.0:
   version "2.5.0"
   resolved "https://registry.npm.taobao.org/normalize-package-data/download/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"
@@ -8403,10 +8426,10 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-router@^4.0.0-rc.5:
-  version "4.0.0-rc.5"
-  resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-4.0.0-rc.5.tgz?cache=0&sync_timestamp=1605950420075&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-router%2Fdownload%2Fvue-router-4.0.0-rc.5.tgz#191d32e3d5276641ff21e881d34e33a71dc6e8f0"
-  integrity sha1-GR0y49UnZkH/IeiB004zpx3G6PA=
+vue-router@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-4.0.1.tgz?cache=0&sync_timestamp=1607347326065&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-router%2Fdownload%2Fvue-router-4.0.1.tgz#309240e50524b1e7d4e82e27f0a0fa25fe3d1d71"
+  integrity sha1-MJJA5QUksefU6C4n8KD6Jf49HXE=
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"
