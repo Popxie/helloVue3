@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
+###
+ # @Description: 
+ # @Author: xiehuaqiang
+ # @FilePath: /hellovue3/deploy.sh
+ # @Date: 2020-12-09 19:05:27
+### 
 
 # 当发生错误时中止脚本
 set -e
@@ -21,7 +27,7 @@ git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
-git push -f git@github.com:Popxie/kaka-blog.git master:gh-pages
+git push -f git@github.com:Popxie/helloVue3.git master:gh-pages
 
 cd -
 
