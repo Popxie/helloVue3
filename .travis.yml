@@ -10,7 +10,7 @@ cache:
 
 # 如果权限不够 开启权限
 before_install:
-  - chmod u+x deploy.sh
+  # - chmod u+x deploy.sh
 
 # S: Build Lifecycle
 install:
