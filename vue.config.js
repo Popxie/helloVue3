@@ -25,6 +25,7 @@ const globalConfig = Object.assign({}, defaultEnvObj, envConfig)
 const publicPath = env === 'production' ? '/helloVue3/' : '/'
 
 console.log('===================================start')
+console.log('env: ', env)
 console.log('projectDir: ', projectDir)
 console.log('envConfig: ', envConfig)
 console.log('defaultEnvObj: ', defaultEnvObj);
@@ -42,6 +43,7 @@ module.exports = {
   configureWebpack: {
     plugins: [
       // 变量名可在任何地方输出 直接使用变量名 KAKA_NAME
+      // 注意 双层引号
       new webpack.DefinePlugin({
         KAKA_NAME: '"xiehuaqiang"',
         VUE_APP_NAME: JSON.stringify(name),

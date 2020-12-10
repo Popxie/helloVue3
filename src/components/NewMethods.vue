@@ -41,6 +41,7 @@ export default {
       age: 20
     }
     console.log('GLOBALE_CONFIG:', GLOBALE_CONFIG)
+    console.log('KAKA_NAME: ', KAKA_NAME)
 
     const state1 = ref(obj.count)
     const state2 = toRef(obj, 'count')
