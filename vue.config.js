@@ -37,7 +37,19 @@ process.env.VUE_APP_VERSION = version
 
 module.exports = {
   devServer: {
-    proxy: 'http://localhost:8899', // will proxy all request 与mock.js里的端口号保持一致
+    // proxy: 'http://localhost:8899', // will proxy all request 与mock.js里的端口号保持一致
+    proxy: {
+      '/authority': {
+        target: 'http://10.0.10.65/'
+      },
+      '/cooperation': {
+        target: 'http://10.0.10.65/'
+      },
+      '/*': {
+        target: 'http://localhost:8899'
+      }
+    },
+    https: true
   },
   publicPath,
   configureWebpack: {

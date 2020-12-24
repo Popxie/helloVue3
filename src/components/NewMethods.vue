@@ -1,10 +1,3 @@
-/* eslint-disable no-undef */
-<!--
- * @Description: 
- * @Author: xiehuaqiang
- * @FilePath: /hellovue3/src/components/NewMethods.vue
- * @Date: 2020-11-23 14:21:19
--->
 <template>
   <p>{{ state1 }}</p>
   <el-button @click="add1">增加1</el-button>
@@ -15,7 +8,9 @@
 	<p>infoObj:{{ infoObj }}</p>
   <el-button type='primary' @click="add3">增加3</el-button>
 
-  <el-button type='primary' @click="getDataListClick">获取数据</el-button>
+  <el-button type='primary' @click="getDataListClick">获取数据 mock</el-button>
+  <el-button type='primary' @click="getDataListClick2">获取数据 65</el-button>
+  <el-button type='primary' @click="login">登录</el-button>
 </template>
 
 <script>
@@ -32,7 +27,7 @@ export default {
   },
   data() {
     return {
-      name: 'your name'
+      name: 'your name',
     }
   },
   setup() {
@@ -82,6 +77,25 @@ export default {
       }
       const res = await axios.get(url, { params })
       console.log('res: ', res)
+    },
+    async getDataListClick2() {
+      const url = '/cooperation/api/v1/mixCourse'
+      const params = {
+        pageSize: 20,
+        pageNum: 1
+      }
+      const res = await axios.get(url, { params })
+      console.log('res: ', res)
+    },
+    async login() {
+      const url = '/authority/auth/login'
+      const params = {
+        username: 'xiehuaqiang',
+        password: 'H7uBaUSO4KEUIpZDys2twUkHDyWsv+WfADzPl9yVKkdRvNTC4QXzVqjFIYNWANyVdxdxf3tJ6czFP3KX4S9G6dLUdy2kmJ7KUS3vxoy85GJmSQM5bVbQGUD5Bj/x6HJ56b9KvvxVBqjwXFHFn28XksW5j32Z7H7FTmqLrrbQ3MU=',
+        appKey: 'FFFF0N0N000000006D3A',
+        keyId: '12ede89a-31e1-43e6-8eb3-b1be0900548c',
+      }
+      const res = await axios.post(url, params)
     }
   }
 }
