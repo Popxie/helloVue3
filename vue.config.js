@@ -2,7 +2,7 @@
  * @Description: 使用vue-cli自带的环境变量配置文件 + 额外的自定义yaml配置的环境变量（目的为了熟练这两种情况）
  * 将参数放到了系统自带的 process.env 对象 和 自定义的全局变量对象里
  * @Author: xiehuaqiang
- * @FilePath: /hellovue3/vue.config.js
+ * @FilePath: \helloVue3\vue.config.js
  * @Date: 2020-11-25 15:06:46
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -25,10 +25,6 @@ const globalConfig = Object.assign({}, defaultEnvObj, envConfig)
 const publicPath = env === 'production' ? '/helloVue3/' : '/'
 
 console.log('===================================start')
-console.log('env: ', env)
-console.log('projectDir: ', projectDir)
-console.log('envConfig: ', envConfig)
-console.log('defaultEnvObj: ', defaultEnvObj);
 console.log('globalConfig: ', globalConfig)
 console.log('===================================end')
 
@@ -49,9 +45,51 @@ module.exports = {
         target: 'http://localhost:8899'
       }
     },
-    https: true
+    https: false
   },
   publicPath,
+  chainWebpack: (config) => {
+  console.log('🚀 ===============================config===============================', config)
+    const splitChunksObj = {
+      cacheGroups: {
+        common: {
+          name: "chunk-common",
+          chunks: "initial",
+          minChunks: 2,
+          maxInitialRequests: 5,
+          minSize: 0,
+          priority: 1,
+          reuseExistingChunk: true,
+          enforce: true
+        },
+        vendors: {
+          name: "chunk-vendors",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "initial",
+          priority: 2,
+          reuseExistingChunk: true,
+          enforce: true
+        },
+        elementUI: {
+          name: "chunk-elementui",
+          test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+          chunks: "all",
+          priority: 3,
+          reuseExistingChunk: true,
+          enforce: true
+        },
+        moment: {
+          name: "chunk-moment",
+          test: /[\\/]node_modules[\\/]moment[\\/]/,
+          chunks: "all",
+          priority: 4,
+          reuseExistingChunk: true,
+          enforce: true
+        }
+      }
+    }
+    config.optimization.splitChunks(splitChunksObj)
+  },
   configureWebpack: {
     plugins: [
       // 变量名可在任何地方输出 直接使用变量名 KAKA_NAME
@@ -71,5 +109,6 @@ module.exports = {
         axios: 'axios'
       })
     ]
-  }
+  },
+  
 }

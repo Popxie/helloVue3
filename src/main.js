@@ -1,7 +1,7 @@
 /*
  * @Description: 
  * @Author: xiehuaqiang
- * @FilePath: /hellovue3/src/main.js
+ * @FilePath: \helloVue3\src\main.js
  * @Date: 2020-12-09 17:19:37
  */
 import { createApp } from 'vue'
@@ -12,6 +12,9 @@ import App from './App.vue'
 
 import '@/utils/fetch.js'
 import './styles/reset.scss'
+
+import moment from 'moment'
+console.log('🚀 moment', moment)
 
 import { ElButton } from 'element-plus';
 const components = [ ElButton ]

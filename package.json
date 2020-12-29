@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve & node mock.js",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --copy",
+    "mock": "node mock.js",
+    "sm": "vue-cli-service serve --copy & node mock.js",
+    "build": "vue-cli-service build --report",
     "build:test": "vue-cli-service build --mode test",
     "build:staging": "vue-cli-service build --mode staging",
     "build:prod": "vue-cli-service build --mode production",
@@ -15,6 +17,7 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.1-alpha.21",
+    "moment": "^2.29.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.1",
     "vuex": "^3.5.1"
