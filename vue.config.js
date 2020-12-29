@@ -85,6 +85,14 @@ module.exports = {
           priority: 4,
           reuseExistingChunk: true,
           enforce: true
+        },
+        dayjs: {
+          name: "chunk-dayjs",
+          test: /[\\/]node_modules[\\/]dayjs[\\/]/,
+          chunks: "all",
+          priority: 5,
+          reuseExistingChunk: true,
+          enforce: true
         }
       }
     }

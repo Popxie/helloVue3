@@ -7,16 +7,22 @@
 import { createApp } from 'vue'
 // import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css'
+
+import moment from 'moment'
+
+// import dayjs from 'dayjs'
+import * as dayjs from 'dayjs'
+console.log('🚀 dayjs', dayjs)
+
 import router from './router'
 import App from './App.vue'
 
 import '@/utils/fetch.js'
 import './styles/reset.scss'
 
-import moment from 'moment'
 console.log('🚀 moment', moment)
 
-import { ElButton } from 'element-plus';
+import { ElButton } from 'element-plus'
 const components = [ ElButton ]
 const app = createApp(App)
 
