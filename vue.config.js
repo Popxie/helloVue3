@@ -97,7 +97,7 @@ module.exports = {
   },
   publicPath,
   chainWebpack: (config) => {
-    const mapType = isProduction ? '' ：'source-map'
+    const mapType = isProduction ? '' : 'source-map'
     config.devtool(mapType)
     config.optimization.splitChunks(splitChunksObj)
   },
