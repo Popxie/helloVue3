@@ -17,5 +17,5 @@ const router = createRouter({
   routes, // short for `routes: routes`
 })
 
-console.log('router: ', router)
+// console.log('router: ', router)
 export default router

@@ -12,15 +12,18 @@ import moment from 'moment'
 
 // import dayjs from 'dayjs'
 import * as dayjs from 'dayjs'
-console.log('🚀 dayjs', dayjs)
+// console.log('🚀 dayjs', dayjs)
+
 
 import router from './router'
+console.log('🚀 router', router)
 import App from './App.vue'
 
 import '@/utils/fetch.js'
+import directives  from './directives'
 import './styles/reset.scss'
 
-console.log('🚀 moment', moment)
+// console.log('🚀 moment', moment)
 
 import { ElButton } from 'element-plus'
 const components = [ ElButton ]
@@ -30,5 +33,6 @@ components.forEach(component => {
   app.component(component.name, component)
 })
 
+app.use(directives)
 app.use(router)
 app.mount('#app')

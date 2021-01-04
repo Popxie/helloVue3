@@ -2,25 +2,25 @@
 
 ## Project setup
 
-```
+```bash
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
 
-```
+```bash
 yarn serve
 ```
 
 ### Compiles and minifies for production
 
-```
+```bash
 yarn build
 ```
 
 ### Lints and fixes files
 
-```
+```bash
 yarn lint
 ```
 
@@ -32,7 +32,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - 如果使用 config 下的`yalm文件`作为环境变量文件（`env.*.yaml`）时，想拿到正确的`NODE_ENV=staging`,就需要更改默认脚本配置&安装`cross-env`依赖！
 
-```
+```bash
 "build:staging": "vue-cli-service build --mode staging" // 旧
 
 "build:staging": "cross-env NODE_ENV=staging vue-cli-service build" // 新

@@ -11,6 +11,11 @@
   <el-button type='primary' @click="getDataListClick">获取数据 mock</el-button>
   <el-button type='primary' @click="getDataListClick2">获取数据 65</el-button>
   <el-button type='primary' @click="login">登录</el-button>
+
+  <div>
+    <input v-model="copyText" type="text">
+    <el-button v-copy='copyText'>复制</el-button>
+  </div>
 </template>
 
 <script>
@@ -27,6 +32,7 @@ export default {
   },
   data() {
     return {
+      copyText: 'im a copy directive',
       name: 'your name',
     }
   },
@@ -36,7 +42,6 @@ export default {
       age: 20
     }
     console.log('GLOBALE_CONFIG:', GLOBALE_CONFIG)
-    console.log('KAKA_NAME: ', KAKA_NAME)
 
     const state1 = ref(obj.count)
     const state2 = toRef(obj, 'count')

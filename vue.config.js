@@ -14,6 +14,7 @@ const { name, version } = require('./package.json')
 
 const projectDir = __dirname
 const env = process.env.NODE_ENV || 'development'
+const isProduction = process.env.NODE_ENV === 'production'
 const configDir = path.join(projectDir, './config')
 const defaultEnvFilename = path.resolve(configDir, 'env.yaml')
 const configFilename = path.resolve(configDir, `env.${env}.yaml`)
@@ -22,7 +23,7 @@ const defaultEnvObj = yaml.safeLoad(fs.readFileSync(defaultEnvFilename, 'utf8'))
 const envConfig = configFilename ? yaml.safeLoad(fs.readFileSync(configFilename, 'utf8')) : {}
 
 const globalConfig = Object.assign({}, defaultEnvObj, envConfig)
-const publicPath = env === 'production' ? '/helloVue3/' : '/'
+const publicPath = isProduction ? '/helloVue3/' : '/'
 
 console.log('===================================start')
 console.log('globalConfig: ', globalConfig)
@@ -30,6 +31,53 @@ console.log('===================================end')
 
 globalConfig.VUE_APP_VERSION = version
 process.env.VUE_APP_VERSION = version
+
+const splitChunksObj = {
+  cacheGroups: {
+    common: {
+      name: "chunk-common",
+      chunks: "initial",
+      minChunks: 2,
+      maxInitialRequests: 5,
+      minSize: 0,
+      priority: 1,
+      reuseExistingChunk: true,
+      enforce: true
+    },
+    vendors: {
+      name: "chunk-vendors",
+      test: /[\\/]node_modules[\\/]/,
+      chunks: "initial",
+      priority: 2,
+      reuseExistingChunk: true,
+      enforce: true
+    },
+    elementUI: {
+      name: "chunk-element-plus",
+      test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+      chunks: "all",
+      priority: 3,
+      reuseExistingChunk: true,
+      enforce: true
+    },
+    moment: {
+      name: "chunk-moment",
+      test: /[\\/]node_modules[\\/]moment[\\/]/,
+      chunks: "all",
+      priority: 4,
+      reuseExistingChunk: true,
+      enforce: true
+    },
+    dayjs: {
+      name: "chunk-dayjs",
+      test: /[\\/]node_modules[\\/]dayjs[\\/]/,
+      chunks: "all",
+      priority: 5,
+      reuseExistingChunk: true,
+      enforce: true
+    }
+  }
+}
 
 module.exports = {
   devServer: {
@@ -49,53 +97,8 @@ module.exports = {
   },
   publicPath,
   chainWebpack: (config) => {
-  console.log('🚀 ===============================config===============================', config)
-    const splitChunksObj = {
-      cacheGroups: {
-        common: {
-          name: "chunk-common",
-          chunks: "initial",
-          minChunks: 2,
-          maxInitialRequests: 5,
-          minSize: 0,
-          priority: 1,
-          reuseExistingChunk: true,
-          enforce: true
-        },
-        vendors: {
-          name: "chunk-vendors",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "initial",
-          priority: 2,
-          reuseExistingChunk: true,
-          enforce: true
-        },
-        elementUI: {
-          name: "chunk-element-plus",
-          test: /[\\/]node_modules[\\/]element-plus[\\/]/,
-          chunks: "all",
-          priority: 3,
-          reuseExistingChunk: true,
-          enforce: true
-        },
-        moment: {
-          name: "chunk-moment",
-          test: /[\\/]node_modules[\\/]moment[\\/]/,
-          chunks: "all",
-          priority: 4,
-          reuseExistingChunk: true,
-          enforce: true
-        },
-        dayjs: {
-          name: "chunk-dayjs",
-          test: /[\\/]node_modules[\\/]dayjs[\\/]/,
-          chunks: "all",
-          priority: 5,
-          reuseExistingChunk: true,
-          enforce: true
-        }
-      }
-    }
+    const mapType = isProduction ? '' ：'source-map'
+    config.devtool(mapType)
     config.optimization.splitChunks(splitChunksObj)
   },
   configureWebpack: {
