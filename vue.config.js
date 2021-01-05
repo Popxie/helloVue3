@@ -2,7 +2,7 @@
  * @Description: 使用vue-cli自带的环境变量配置文件 + 额外的自定义yaml配置的环境变量（目的为了熟练这两种情况）
  * 将参数放到了系统自带的 process.env 对象 和 自定义的全局变量对象里
  * @Author: xiehuaqiang
- * @FilePath: \helloVue3\vue.config.js
+ * @FilePath: /hellovue3/vue.config.js
  * @Date: 2020-11-25 15:06:46
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -28,6 +28,10 @@ const publicPath = isProduction ? '/helloVue3/' : '/'
 console.log('===================================start')
 console.log('globalConfig: ', globalConfig)
 console.log('===================================end')
+
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
 
 globalConfig.VUE_APP_VERSION = version
 process.env.VUE_APP_VERSION = version
@@ -83,15 +87,9 @@ module.exports = {
   devServer: {
     // proxy: 'http://localhost:8899', // will proxy all request 与mock.js里的端口号保持一致
     proxy: {
-      '/authority': {
-        target: 'http://10.0.10.65/'
-      },
-      '/cooperation': {
-        target: 'http://10.0.10.65/'
-      },
-      '/*': {
-        target: 'http://localhost:8899'
-      }
+      '/authority': { target: 'http://10.0.10.65/' },
+      '/cooperation': { target: 'http://10.0.10.65/' },
+      '/*': { target: 'http://localhost:8899' }
     },
     https: false
   },
@@ -99,27 +97,37 @@ module.exports = {
   chainWebpack: (config) => {
     const mapType = isProduction ? '' : 'source-map'
     config.devtool(mapType)
+    config.resolve.alias
+      .set('@', resolve('src'))
     config.optimization.splitChunks(splitChunksObj)
-  },
-  configureWebpack: {
-    plugins: [
-      // 变量名可在任何地方输出 直接使用变量名 KAKA_NAME
-      // 注意 双层引号
-      new webpack.DefinePlugin({
-        KAKA_NAME: '"xiehuaqiang"',
+    config.optimization
+      .minimizer('terser')
+      .tap(args => {
+        // 经过测试得出结论： 这玩意儿只在生产环境才会生效！！
+        if (process.env.NODE_ENV === 'production') {
+          args[0].terserOptions.compress.drop_console = true
+          args[0].terserOptions.compress.drop_debugger = true
+        }
+        return args
+      })
+    config
+    .plugin('DefinePlugin')
+      .use(webpack.DefinePlugin, [{
         VUE_APP_NAME: JSON.stringify(name),
         GLOBALE_CONFIG: JSON.stringify(globalConfig)
-      }),
-      // 变量名仅在dom插值的时候用 htmlWebpackPlugin.options.VUE_APP_TITLE
-      new HtmlWebpackPlugin({
+      }])
+      .end()
+    .plugin('HtmlWebpackPlugin')
+      .use(HtmlWebpackPlugin, [{
         template: 'public/index.html',
         BASE_URL: publicPath,
-        VUE_APP_TITLE: process.env.VUE_APP_TITLE
-      }),
-      new webpack.ProvidePlugin({
+        VUE_APP_TITLE: globalConfig.VUE_APP_TITLE
+      }])
+      .end()
+    .plugin('ProvidePlugin')
+      .use(webpack.ProvidePlugin, [{
         axios: 'axios'
-      })
-    ]
+      }])
+      .end()
   },
-  
 }
