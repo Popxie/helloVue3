@@ -16,17 +16,27 @@
     <input v-model="copyText" type="text">
     <el-button v-copy='copyText'>复制</el-button>
   </div>
+  
+  <Page1 />
+  <Page2 />
+  <page3 />
+  <page4 />
+  <page5 />
 </template>
 
 <script>
-import {
-  ref,
-  toRefs,
-  toRef
-} from 'vue'
+import { ref, toRefs, toRef, defineAsyncComponent } from 'vue'
 
+// import Page1 from '../pages/page1'
 export default {
   name: 'NewWriteMethods',
+  components: {
+    Page1: defineAsyncComponent(() => import(/* webpackChunkName: "NewMethods" */'../pages/page1')),
+    Page2: defineAsyncComponent(() => import('../pages/page2')),
+    'page3': defineAsyncComponent(() => import('../pages/page3')),
+    'page4': defineAsyncComponent(() => import('../pages/page4')),
+    'page5': defineAsyncComponent(() => import('../pages/page5')),
+  },
   props: {
     msg: String
   },

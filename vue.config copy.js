@@ -2,7 +2,7 @@
  * @Description: 使用vue-cli自带的环境变量配置文件 + 额外的自定义yaml配置的环境变量（目的为了熟练这两种情况）
  * 将参数放到了系统自带的 process.env 对象 和 自定义的全局变量对象里
  * @Author: xiehuaqiang
- * @FilePath: \helloVue3\vue.config.js
+ * @FilePath: /hellovue3/vue.config.js
  * @Date: 2020-11-25 15:06:46
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -99,7 +99,7 @@ module.exports = {
     config.devtool(mapType)
     config.resolve.alias
       .set('@', resolve('src'))
-    // config.optimization.splitChunks(splitChunksObj)
+    config.optimization.splitChunks(splitChunksObj)
     config.optimization
       .minimizer('terser')
       .tap(args => {
