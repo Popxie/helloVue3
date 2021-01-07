@@ -95,6 +95,7 @@ module.exports = {
   },
   publicPath,
   chainWebpack: (config) => {
+    // console.log('🚀 config.toString()', config.toString())
     const mapType = isProduction ? '' : 'source-map'
     config.devtool(mapType)
     config.resolve.alias

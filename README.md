@@ -58,4 +58,9 @@ rimraf node_modules
 
 ### 审查项目
 
-[](https://cli.vuejs.org/zh/guide/webpack.html)
+[vue-cli·webpack](https://cli.vuejs.org/zh/guide/webpack.html)
+
+```bash
+vue inspect --rules     # 查看所有规则
+vue inspect --plugins   # 查看所有插件
+```
