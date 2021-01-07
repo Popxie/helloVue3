@@ -100,34 +100,40 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
     // config.optimization.splitChunks(splitChunksObj)
-    config.optimization
-      .minimizer('terser')
-      .tap(args => {
-        // 经过测试得出结论： 这玩意儿只在生产环境才会生效！！
-        if (process.env.NODE_ENV === 'production') {
-          args[0].terserOptions.compress.drop_console = true
-          args[0].terserOptions.compress.drop_debugger = true
-        }
-        return args
-      })
     config
-    .plugin('DefinePlugin')
-      .use(webpack.DefinePlugin, [{
-        VUE_APP_NAME: JSON.stringify(name),
-        GLOBALE_CONFIG: JSON.stringify(globalConfig)
-      }])
-      .end()
-    .plugin('HtmlWebpackPlugin')
-      .use(HtmlWebpackPlugin, [{
-        template: 'public/index.html',
-        BASE_URL: publicPath,
-        VUE_APP_TITLE: globalConfig.VUE_APP_TITLE
-      }])
-      .end()
-    .plugin('ProvidePlugin')
-      .use(webpack.ProvidePlugin, [{
-        axios: 'axios'
-      }])
-      .end()
+      .optimization
+        .minimizer('terser')
+          .tap(args => {
+            // 经过测试得出结论： 这玩意儿只在生产环境才会生效！！
+            if (process.env.NODE_ENV === 'production') {
+              args[0].terserOptions.compress.drop_console = true
+              args[0].terserOptions.compress.drop_debugger = true
+            }
+            return args
+          })
+  // https://v4.webpack.docschina.org/guides/caching/
+    // 使用 HashedModuleIdsPlugin || runtimeChunk 进行优化
+    config
+      .optimization
+        .runtimeChunk('single')
+    config
+      .plugin('DefinePlugin')
+        .use(webpack.DefinePlugin, [{
+          VUE_APP_NAME: JSON.stringify(name),
+          GLOBALE_CONFIG: JSON.stringify(globalConfig)
+        }])
+        .end()
+      .plugin('HtmlWebpackPlugin')
+        .use(HtmlWebpackPlugin, [{
+          template: 'public/index.html',
+          BASE_URL: publicPath,
+          VUE_APP_TITLE: globalConfig.VUE_APP_TITLE
+        }])
+        .end()
+      .plugin('ProvidePlugin')
+        .use(webpack.ProvidePlugin, [{
+          axios: 'axios'
+        }])
+        .end()
   },
 }
